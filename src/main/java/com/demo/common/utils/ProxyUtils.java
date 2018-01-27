@@ -1,11 +1,8 @@
 package com.demo.common.utils;
 
 import com.demo.common.GlobalVar;
+import com.demo.common.annotation.*;
 import com.demo.common.entity.TestStep;
-import com.demo.common.annotation.GET;
-import com.demo.common.annotation.POST;
-import com.demo.common.annotation.Param;
-import com.demo.common.annotation.SERVER;
 import com.demo.common.enums.HttpType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +94,8 @@ public class ProxyUtils {
 
                                 if (annos[0] instanceof Param) {
                                     map.put((((Param) annos[0]).value()), args[i]);
+                                } else if (annos[0] instanceof PathVariable) {
+                                    path = path.replaceFirst("\\{\\}", args[i].toString());
                                 }
                                 else {
                                     throw new RuntimeException(String.format("暂不支持方法%s中配置的参数注解%s",

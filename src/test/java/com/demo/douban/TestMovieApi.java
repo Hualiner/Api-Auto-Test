@@ -32,8 +32,11 @@ public class TestMovieApi extends BaseRunner {
     @Test
     public void testTop250() throws Exception {
         response = movieApi.top250(0, 1);
-
-        logger.info(response.then().extract().path("subjects[0].title"));
         response.then().body("subjects[0].title", equalTo("肖申克的救赎"));
+    }
+
+    @Test
+    public void testCelebrity() throws Exception {
+        response = movieApi.celebrity("1031931");
     }
 }
