@@ -22,5 +22,5 @@ public interface MovieApi {
                     @Param("count") Integer count);
 
     @GET(path = " /celebrity/{}", description = "影人条目信息")
-    Response celebrity(@PathVariable String id);
+    Response celebrity(@PathVariable Integer id);
 }

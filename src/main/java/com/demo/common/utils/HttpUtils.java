@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+import static com.demo.common.GlobalVar.COOKIES;
+import static com.demo.common.GlobalVar.HEADERS;
 import static com.demo.common.GlobalVar.listenerUtils;
 import static com.jayway.restassured.RestAssured.config;
 import static com.jayway.restassured.RestAssured.given;
@@ -89,7 +91,7 @@ public class HttpUtils {
      * @param path
      */
     private RequestSpecification getRequestSpecification(String path) {
-        return given().config(restAssuredConfig).basePath(path);
+        return given().headers(HEADERS).cookies(COOKIES).config(restAssuredConfig).basePath(path);
     }
 
     /**

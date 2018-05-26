@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.demo.common.GlobalVar.HEADERS;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
@@ -31,12 +32,15 @@ public class TestMovieApi extends BaseRunner {
      */
     @Test
     public void testTop250() throws Exception {
+        HEADERS.put("code", "123456");
+        HEADERS.put("token", "2ae3e7aeaf4642a4b6b1914d857b235d");
+
         response = movieApi.top250(0, 1);
         response.then().body("subjects[0].title", equalTo("肖申克的救赎"));
     }
 
     @Test
     public void testCelebrity() throws Exception {
-        response = movieApi.celebrity("1031931");
+        response = movieApi.celebrity(1031931);
     }
 }
